@@ -1,5 +1,8 @@
-import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { AppProps } from 'next/app'
+
+import ErrorBoundary from 'core/ErrorBoundary'
+import { ErrorFallback } from 'components/ErrorFallback'
 
 import GlobalStyles from 'styles/global'
 
@@ -17,7 +20,9 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Component {...pageProps} />
+      </ErrorBoundary>
     </>
   )
 }
